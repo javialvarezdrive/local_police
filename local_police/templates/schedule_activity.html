@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule Activity</title>
+</head>
+<body>
+    <h2>Schedule Activity</h2>
+    {% if message %}
+    <p style="color:green;">{{ message }}</p>
+    {% endif %}
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    <form method="post">
+        <label for="activity_id">Activity:</label><br>
+        <select id="activity_id" name="activity_id">
+            {% for activity in activities %}
+            <option value="{{ activity.id }}">{{ activity.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date"><br><br>
+        <label for="shift">Shift:</label><br>
+        <select id="shift" name="shift">
+            <option value="Morning Shift">Morning Shift</option>
+            <option value="Afternoon Shift">Afternoon Shift</option>
+            <option value="Night Shift">Night Shift</option>
+        </select><br><br>
+        <label for="instructor_id">Instructor:</label><br>
+        <select id="instructor_id" name="instructor_id">
+            {% for instructor in instructors %}
+            <option value="{{ instructor.id }}">{{ instructor.first_name }} {{ instructor.last_name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Schedule">
+    </form>
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</body>
+</html>

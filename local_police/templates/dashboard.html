@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Dashboard</h2>
+    {% if session.get('instructor_name') %}
+    <p>Welcome, {{ session['instructor_name'] }}!</p>
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+    {% endif %}
+    <p><a href="{{ url_for('register_agent') }}">Register Agent</a></p>
+    <p><a href="{{ url_for('schedule_activity') }}">Schedule Activity</a></p>
+    <p><a href="{{ url_for('assign_agent') }}">Assign Agent to Activity</a></p>
+
+    <h3>Attendance Monitoring</h3>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        {{ attendance_counts | safe }}
+    {% endif %}
+</body>
+</html>

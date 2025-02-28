@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Agent to Activity</title>
+</head>
+<body>
+    <h2>Assign Agent to Activity</h2>
+    {% if message %}
+    <p style="color:green;">{{ message }}</p>
+    {% endif %}
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    <form method="post">
+        <label for="agent_id">Agent:</label><br>
+        <select id="agent_id" name="agent_id">
+            {% for agent in agents %}
+            <option value="{{ agent.id }}">{{ agent.first_name }} {{ agent.last_name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="scheduled_activity_id">Scheduled Activity:</label><br>
+        <select id="scheduled_activity_id" name="scheduled_activity_id">
+            {% for activity in scheduled_activities %}
+            <option value="{{ activity.id }}">{{ activity.Activities.name }} - {{ activity.date }} - {{ activity.shift }} - {{ activity.Agents.first_name }} {{ activity.Agents.last_name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Assign">
+    </form>
+    <p><a href="{{ url_for('dashboard') }}">Back to Dashboard</a></p>
+</body>
+</html>
